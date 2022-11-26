@@ -10,7 +10,7 @@ const { default: mongoose } = require('mongoose');
 const app = express()
 const port = process.env.PORT || 3000;
 
-mongoose.connect(process.env.Database)
+mongoose.connect(process.env.DATABASE)
 .then(con => {
     console.log('DB connection successfully')
 })
