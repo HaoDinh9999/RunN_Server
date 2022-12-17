@@ -19,8 +19,10 @@ router
     .get(userController.getAllUsers)
 
 router
-    .route('/:email/detail')
-    .get(userController.getUserByEmail)
+    .route('/detail/:id')
+    .get(userController.getUserById)
+    .post(userController.updateUserById)
+
 // router
 //     .route('/')
 //     .get(getAllTours),

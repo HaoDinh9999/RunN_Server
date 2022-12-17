@@ -2,14 +2,25 @@ const User = require('../models/user.model')
 
 exports.signup =async (req,res,next) => {
     try{
-        const newUser = await User.create(req.body);
+        const {email, password} = req.body;
 
-        res.status(201).json({
-            status:'success',
-            data:{
-                user:newUser
-            }
-        })
+        const user =await User.findOne({email});
+        if(!user){
+            const newUser = await User.create(req.body);
+            res.status(201).json({
+                status:'success',
+                data:{
+                    user:newUser
+                }
+            })
+        }
+        else{
+            res.status(400).json({
+                status:'failed',
+                error: "Your account have exists."
+            })
+        }
+        
     }
     catch(err){
         res.status(500).json({
